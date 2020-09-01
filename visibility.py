@@ -28,8 +28,7 @@ def T2mag(g1p1,g1m1,g10):
     v=3 # m/s, neutron speed
     H=.12 # m, height of chamber
     T2mag_inverse=8*R**3*gamma_n**2/(9*pi*v)*(g1p1**2+g1m1**2)+H**3*gamma_n**2/(16*v)*g10**2
-    if(T2mag_inverse<1e-9): # prevent div by 0
-        T2mag_inverse=1e-9
+    T2mag_inverse=T2mag_inverse+1e-9*np.less(T2mag_inverse,1e-9) # prevent divide by 0
     return 1/T2mag_inverse
 
 def alpha_irrev(g1p1,g1m1,g10):
